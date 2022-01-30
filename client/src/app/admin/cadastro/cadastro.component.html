@@ -1,0 +1,36 @@
+<p>Cadastros</p>
+
+<body>
+  <div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="name" type="text" class="validate" #inputName (input)="insertName(inputName.value)" placeholder="Ex: Trilho de ar">
+          <label for="name">Nome</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="description" type="text" class="validate" #inputDescription (input)="insertDescription(inputDescription.value)"
+            placeholder="Este texto irá aparecer no corpo da página, para estilizar inserira elementos HTML e CSS.">
+          <label for="description">Descrição</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="file-field input-field col s6">
+          <div class="btn">
+            <span>File</span>
+            <input type="file" multiple #inputFiles (change)="insertFiles(inputFiles.files!)">
+          </div>
+          <div class="file-path-wrapper">
+            <input id="files" class="file-path validate" type="text" placeholder="Upload one or more files">
+          </div>
+        </div>
+        <div class="row">
+          <button class="btn waves-effect waves-light" type="button" name="action" (click)="submit()">Submit
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</body>
