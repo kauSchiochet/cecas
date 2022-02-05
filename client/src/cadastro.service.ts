@@ -8,19 +8,40 @@ import { Cadastro } from "./app/admin/cadastro/cadastro.mode"
 export class CadastroService {
     constructor(private http: HttpClient) { }
 
-    public efetivarCadastro(cadastro: Cadastro): Observable<unknown> {
+    private formDataCadastro(cadastro: Cadastro) : FormData {
         let form = new FormData();
         form.append('name', cadastro.name);
-        form.append('description', cadastro.description)
-        form.append('htmlContent', cadastro.editorModel)
-        if (cadastro.images != undefined) {
-            for (let i = 0; i < cadastro.images.length; i++) {
-                const image = cadastro.images[i];
-                form.append('images', image)
-            }
-        }
+        form.append('htmlContent', cadastro.editorModel) 
+        return form
+    }
 
-        return this.http.post("/api/cadastro", form)
+    public getCadastro(id: BigInteger): Observable<unknown> {
+        let endpoint = `/api/digitalizacao/${id}`
+        return this.http.get(endpoint)
+            .pipe(
+                catchError(this.handleError)
+                )
+    }
+
+    public efetivarCadastro(cadastro: Cadastro): Observable<unknown> {
+        
+        return this.http.post("/api/digitalizacao", this.formDataCadastro(cadastro))
+            .pipe(
+                catchError(this.handleError)
+                )
+    }
+
+    public editarCadastro(cadastro: Cadastro): Observable<unknown> {
+        let endpoint = `/api/digitalizacao/${cadastro.id}`
+        return this.http.put(endpoint, this.formDataCadastro(cadastro))
+            .pipe(
+                catchError(this.handleError)
+                )
+    }
+
+    public deleteCadastro(id: BigInteger): Observable<unknown> {
+        let endpoint = `/api/digitalizacao/${id}`
+        return this.http.delete(endpoint,{})
             .pipe(
                 catchError(this.handleError)
                 )

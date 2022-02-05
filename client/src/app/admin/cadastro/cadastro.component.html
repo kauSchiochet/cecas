@@ -10,22 +10,10 @@
             placeholder="Ex: Trilho de ar">
         </div>
       </div>
-      <div class="row">
-        <div class="col-6">
-          <label for="description" class="form-label">Descrição</label>
-          <input type="text" #inputDescription (input)="insertDescription(inputDescription.value)" class="form-control"
-            id="name"
-            placeholder="Este texto irá aparecer no corpo da página, para estilizar inserira elementos HTML e CSS.">
-        </div>
+      <div class="col-6">
+        <quill-editor [(ngModel)]="cadastro.editorModel" [styles]="{height: '400px'}" [modules]="modulesQuill" name="editor"></quill-editor>
       </div>
-      <div class="row">
-        <div class="col-6">
-          <label for="formFileLg" class="form-label">Inserir arquivos</label>
-          <input class="form-control form-control-lg" id="files" type="file" multiple #inputFiles
-            (change)="insertFiles(inputFiles.files!)">
-        </div>
-      </div>
-      <quill-editor [(ngModel)]="cadastro.editorModel" [styles]="{height: '400px'}" [modules]="modulesQuill" name="editor"></quill-editor>
+      
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <div class="col-6">
           <button type="button" name="action" class="btn btn-light me-md-2" (click)="submit()">Submit</button>

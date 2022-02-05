@@ -62,13 +62,6 @@ export class CadastroComponent implements OnInit {
   insertName(name: string) {
     this.cadastro.name = name
   }
-  insertDescription(description: string) {
-    this.cadastro.description = description
-  }
-
-  insertFiles(images: FileList) {
-    this.cadastro.images = images
-  }
 
   submit() {
     this.cadastroService.efetivarCadastro(this.cadastro).subscribe(response => {
