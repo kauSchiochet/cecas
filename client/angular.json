@@ -27,11 +27,15 @@
               "src/assets"
             ],
             "styles": [
-              "src/assets/materialize/css/materialize.css",
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/quill/dist/quill.core.css",
+              "./node_modules/quill/dist/quill.bubble.css",
+              "./node_modules/quill/dist/quill.snow.css",
+              "./node_modules/quill-emoji/dist/quill-emoji.css"
             ],
             "scripts": [
-              "src/assets/materialize/js/materialize.js"
+              "./node_modules/quill/dist/quill.min.js"
             ]
           },
           "configurations": {
@@ -79,7 +83,7 @@
           },
           "defaultConfiguration": "development",
           "options": {
-            "proxyConfig": "src/proxy.conf.json"
+            "proxyConfig": "proxy.conf.json"
           }
         },
         "extract-i18n": {
@@ -100,7 +104,9 @@
               "src/assets"
             ],
             "styles": [
-              {"input": "src/externals/materialize/css/materialize.css"},
+              {
+                "input": "src/externals/materialize/css/materialize.css"
+              },
               "src/styles.css"
             ],
             "scripts": [

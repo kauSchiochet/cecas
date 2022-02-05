@@ -12,6 +12,7 @@ export class CadastroService {
         let form = new FormData();
         form.append('name', cadastro.name);
         form.append('description', cadastro.description)
+        form.append('htmlContent', cadastro.editorModel)
         if (cadastro.images != undefined) {
             for (let i = 0; i < cadastro.images.length; i++) {
                 const image = cadastro.images[i];
@@ -19,7 +20,7 @@ export class CadastroService {
             }
         }
 
-        return this.http.post("http://localhost:3000/api/cadastro", form)
+        return this.http.post("/api/cadastro", form)
             .pipe(
                 catchError(this.handleError)
                 )

@@ -2,33 +2,33 @@
 
 <body>
   <div class="row">
-    <form class="col s12">
+    <form class="col-12">
       <div class="row">
-        <div class="input-field col s6">
-          <input id="name" type="text" class="validate" #inputName (input)="insertName(inputName.value)" placeholder="Ex: Trilho de ar">
-          <label for="name">Nome</label>
+        <div class="col-6">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" #inputName (input)="insertName(inputName.value)" class="form-control" id="name"
+            placeholder="Ex: Trilho de ar">
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s6">
-          <input id="description" type="text" class="validate" #inputDescription (input)="insertDescription(inputDescription.value)"
+        <div class="col-6">
+          <label for="description" class="form-label">Descrição</label>
+          <input type="text" #inputDescription (input)="insertDescription(inputDescription.value)" class="form-control"
+            id="name"
             placeholder="Este texto irá aparecer no corpo da página, para estilizar inserira elementos HTML e CSS.">
-          <label for="description">Descrição</label>
         </div>
       </div>
       <div class="row">
-        <div class="file-field input-field col s6">
-          <div class="btn">
-            <span>File</span>
-            <input type="file" multiple #inputFiles (change)="insertFiles(inputFiles.files!)">
-          </div>
-          <div class="file-path-wrapper">
-            <input id="files" class="file-path validate" type="text" placeholder="Upload one or more files">
-          </div>
+        <div class="col-6">
+          <label for="formFileLg" class="form-label">Inserir arquivos</label>
+          <input class="form-control form-control-lg" id="files" type="file" multiple #inputFiles
+            (change)="insertFiles(inputFiles.files!)">
         </div>
-        <div class="row">
-          <button class="btn waves-effect waves-light" type="button" name="action" (click)="submit()">Submit
-          </button>
+      </div>
+      <quill-editor [(ngModel)]="cadastro.editorModel" [styles]="{height: '400px'}" [modules]="modulesQuill" name="editor"></quill-editor>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <div class="col-6">
+          <button type="button" name="action" class="btn btn-light me-md-2" (click)="submit()">Submit</button>
         </div>
       </div>
     </form>
