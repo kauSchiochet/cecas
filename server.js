@@ -8,5 +8,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 require('./src/route')(app);
+require('./src/db');
 
 app.listen('3000');
