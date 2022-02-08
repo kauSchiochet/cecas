@@ -11,6 +11,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { FormsModule } from '@angular/forms';
 import { QuillModule } from 'ngx-quill';
+import { UserComponent } from './admin/user/user.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { QuillModule } from 'ngx-quill';
     AppComponent,
     HeaderComponent,
     CadastroComponent,
-    ViewCadastrosComponent
+    ViewCadastrosComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
