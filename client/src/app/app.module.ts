@@ -13,6 +13,9 @@ import { FormsModule } from '@angular/forms';
 import { QuillModule } from 'ngx-quill';
 import { UserComponent } from './admin/user/user.component';
 
+import { RouterModule } from '@angular/router';
+import { ROUTES } from './app.router';
+
 
 @NgModule({
   declarations: [
@@ -29,7 +32,8 @@ import { UserComponent } from './admin/user/user.component';
     QuillModule.forRoot(),
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    RouterModule.forRoot(ROUTES)
   ],
   providers: [],
   bootstrap: [AppComponent]
