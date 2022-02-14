@@ -5,6 +5,9 @@ import { ViewCadastrosComponent } from "./admin/view-cadastros/view-cadastros.co
 
 export const ROUTES: Routes = [
     {
+        path:"", component: UserComponent
+    },
+    {
         path: 'login', component: UserComponent
     },
     {

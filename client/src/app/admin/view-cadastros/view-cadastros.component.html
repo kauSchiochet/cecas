@@ -1,24 +1,30 @@
 <body>
-    
-    <div>
-        <h4>CADASTROS:</h4>
+    <div class="row">
+        <div class="col-6">
+            <h4>CADASTROS:</h4>
+        </div>
+        <div class="col-6">
+            <div class="col">
+                <button type="button" class="btn btn-dark" routerLink="/cadastro">Novo</button>
+            </div>
+        </div>
     </div>
     
-    <div class="row">
+    <div class="row" *ngFor="let cadastro of cadastros">
         <div class="col-6">
             <div class="row">
                 <button type="button" class="list-group-item list-group-item-action active"
-                    aria-current="true">Titulo</button>
+                    aria-current="true">{{cadastro.name}}</button>
             </div>
             <div class="row">
                 <div class="col">
                     <button type="button" class="btn btn-dark" routerLinkActive="active" routerLink="/view-cadastros">View</button>
                 </div>
                 <div class="col">
-                    <button type="button" class="btn btn-dark" routerLinkActive="active" routerLink="/edicao/colocar id ex: 'cadadtro.id'">Edit</button>
+                    <button type="button" class="btn btn-dark" routerLinkActive="active"  [routerLink]="['/edicao', cadastro.id]" >Edit</button>
                 </div>
                 <div class="col">
-                    <button type="button" class="btn btn-dark">Delete</button>
+                    <button type="button" class="btn btn-dark" (click)="delete(cadastro.id)">Delete</button>
                 </div>
             </div>
         </div>

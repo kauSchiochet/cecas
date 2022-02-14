@@ -1,6 +1,7 @@
 const router = require('express').Router();
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const authConfig = require('../../../config/auth');
-const db = require('../../../db');
 const authMiddleware = require('../../../middleware/auth');
 const dbUser = require('../../../db').user;
 const dbDigitalizacoes = require('../../../db').digitalizacoes;
@@ -37,6 +38,10 @@ router.get('/getdigitalizacoes', authMiddleware, (req, res) => {
 
     if (req.user.master) {
         digitalizacoes = dbDigitalizacoes.readAll();
+        for (let i = 0; i < digitalizacoes.length; i++) {
+            const digitalizacao = digitalizacoes[i];
+            digitalizacao.htmlContent = undefined;
+        }
     }
     for (let i = 0; i < req.user.digitalizacoes.length; i++) {
         const id = req.user.digitalizacoes[i];

@@ -1,7 +1,8 @@
+<app-error></app-error>
 <form>
     <div class="input-group flex-nowrap">
         <span class="input-group-text" id="addon-wrapping">@</span>
-        <input type="text" class="form-control" placeholder="Username" aria-label="Username"
+        <input type="text" id="user" #user class="form-control" placeholder="Username" aria-label="Username"
             aria-describedby="addon-wrapping">
     </div>
 
@@ -9,8 +10,9 @@
         <span class="input-group-text" id="addon-wrapping">
             <i class="bi bi-file-lock-fill"></i>
         </span>
-        <input type="password" class="form-control" id="password">
+        <input type="password" class="form-control" id="password" #password>
     </div>
     <button type="reset" class="btn btn-primary">Resetar login e senha</button>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary" (click)="submit(user.value, password.value)" routerLink="/view-cadastros">Submit</button>
+    <!--  -->
 </form>

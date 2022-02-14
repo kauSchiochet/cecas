@@ -2,6 +2,7 @@ const router = require('express').Router();
 const authMiddleware = require('../../../middleware/auth');
 const multer = require('multer');
 const upload = multer({ limits: { fieldSize: 25 * 1024 * 1024 } });
+const dbDigitalizacoes = require('../../../db').digitalizacoes;
 
 router.get('/:id', authMiddleware, (req, res) => {
 
@@ -22,7 +23,7 @@ router.post('', [upload.none(), authMiddleware], (req, res) => {
 
     if (!digitalizacao.name || !digitalizacao.htmlContent) return res.status(400).json({ err: 'Necessário campos name e htmlContent preenchidos' });
 
-    let id = dbDigitalizacoes.write(digitalizacao, req.user.username, id);
+    let id = dbDigitalizacoes.write(digitalizacao, req.user.username);
 
     res.json({ ok: 'ok', id })
 })

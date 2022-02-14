@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CadastroService } from 'src/cadastro.service';
-import { Cadastro } from './cadastro.mode';
+import { Cadastro } from './cadastro.model';
 import Quill from 'quill';
 import BlotFormatter from 'quill-blot-formatter';
 import 'quill-emoji/dist/quill-emoji.js'
@@ -19,7 +19,7 @@ export class CadastroComponent implements OnInit {
   public cadastro: Cadastro = new Cadastro();
   modulesQuill = {};
 
-  constructor(private cadastroService: CadastroService) { 
+  constructor(private cadastroService: CadastroService) {
     this.modulesQuill = {
       'emoji-shortname': true,
       'emoji-textarea': false,
@@ -57,6 +57,16 @@ export class CadastroComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const path = window.location.pathname.split("/");
+    if (path[1] == "edicao") {
+      let id = path[2] as unknown as BigInteger;
+      this.cadastroService.getCadastro(id).subscribe((response: any) => {
+        this.cadastro.id = response.id;
+        this.cadastro.name = response.name;
+        this.cadastro.editorModel = response.htmlContent;
+        console.log(this.cadastro)
+      })
+    }
   }
 
   insertName(name: string) {
@@ -64,9 +74,15 @@ export class CadastroComponent implements OnInit {
   }
 
   submit() {
-    this.cadastroService.efetivarCadastro(this.cadastro).subscribe(response => {
-      console.log(response);
-    })
+    if (this.cadastro.id == null) {
+      this.cadastroService.efetivarCadastro(this.cadastro).subscribe(response => {
+        console.log(response);
+      })
+    }else{
+      this.cadastroService.editarCadastro(this.cadastro).subscribe(response => {
+        console.log('ok')
+      })
+    }
   }
 
   ngModel() {

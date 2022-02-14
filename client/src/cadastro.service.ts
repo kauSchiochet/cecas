@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http
 import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs"
 import { catchError, map } from "rxjs/operators";
-import { Cadastro } from "./app/admin/cadastro/cadastro.mode"
+import { Cadastro } from "./app/admin/cadastro/cadastro.model"
 
 @Injectable()
 export class CadastroService {
@@ -16,7 +16,16 @@ export class CadastroService {
     }
 
     public getCadastro(id: BigInteger): Observable<unknown> {
+        let token = `Bearer ${sessionStorage.token}`;
         let endpoint = `/api/digitalizacao/${id}`
+        return this.http.get(endpoint,{headers: {"authorization": token}})
+            .pipe(
+                catchError(this.handleError)
+                )
+    }
+
+    public getAllCadastro(): Observable<unknown> {
+        let endpoint = `/api/digitalizacao/`
         return this.http.get(endpoint)
             .pipe(
                 catchError(this.handleError)
@@ -24,24 +33,27 @@ export class CadastroService {
     }
 
     public efetivarCadastro(cadastro: Cadastro): Observable<unknown> {
-        
-        return this.http.post("/api/digitalizacao", this.formDataCadastro(cadastro))
+        let token = `Bearer ${sessionStorage.token}`;
+        return this.http.post("/api/digitalizacao", this.formDataCadastro(cadastro), 
+        {headers: {"authorization": token}})
             .pipe(
                 catchError(this.handleError)
                 )
     }
 
     public editarCadastro(cadastro: Cadastro): Observable<unknown> {
+        let token = `Bearer ${sessionStorage.token}`;
         let endpoint = `/api/digitalizacao/${cadastro.id}`
-        return this.http.put(endpoint, this.formDataCadastro(cadastro))
+        return this.http.put(endpoint, this.formDataCadastro(cadastro),{headers: {"authorization": token}})
             .pipe(
                 catchError(this.handleError)
                 )
     }
 
     public deleteCadastro(id: BigInteger): Observable<unknown> {
+        let token = `Bearer ${sessionStorage.token}`;
         let endpoint = `/api/digitalizacao/${id}`
-        return this.http.delete(endpoint,{})
+        return this.http.delete(endpoint, {headers: {"authorization": token}})
             .pipe(
                 catchError(this.handleError)
                 )

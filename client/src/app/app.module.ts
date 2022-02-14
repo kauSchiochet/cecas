@@ -7,6 +7,7 @@ import { CadastroComponent } from './admin/cadastro/cadastro.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ViewCadastrosComponent } from './admin/view-cadastros/view-cadastros.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { AlertModule, AlertConfig } from 'ngx-bootstrap/alert';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { FormsModule } from '@angular/forms';
@@ -15,6 +16,7 @@ import { UserComponent } from './admin/user/user.component';
 
 import { RouterModule } from '@angular/router';
 import { ROUTES } from './app.router';
+import { ErrorComponent } from './error/error.component';
 
 
 @NgModule({
@@ -23,7 +25,8 @@ import { ROUTES } from './app.router';
     HeaderComponent,
     CadastroComponent,
     ViewCadastrosComponent,
-    UserComponent
+    UserComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -33,9 +36,10 @@ import { ROUTES } from './app.router';
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
+    AlertModule.forRoot(),
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [],
+  providers: [AlertConfig],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

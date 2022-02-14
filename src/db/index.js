@@ -22,7 +22,7 @@ const db = {
     general: {
         data: {},
         get: () => {
-            return db.general.data;
+            return db.utils.copy(db.general.data);
         },
         write: (dataEx) => {
             let data = JSON.stringify((dataEx ? dataEx : db.general.data));
@@ -49,7 +49,7 @@ const db = {
         data: [],
         get: () => {
             db.user.read();
-            return db.user.data;
+            return db.utils.copy(db.user.data);
         },
         write: (dataEx) => {
             let data = JSON.stringify((dataEx ? dataEx : db.user.data));
@@ -87,7 +87,7 @@ const db = {
             }
         },
         findByUsername: (username) => {
-            return db.user.data.find(x => x.username == username);
+            return db.utils.copy(db.user.data.find(x => x.username == username));
         },
         replaceUserObj: (user) => {
             let finded = false;
@@ -167,6 +167,11 @@ const db = {
         },
         makePathFile: (id) => {
             return digitalizacoesFolder + '/' + id + '.json';
+        }
+    },
+    utils: {
+        copy: (data) => {
+            return JSON.parse(JSON.stringify(data));
         }
     }
 };
