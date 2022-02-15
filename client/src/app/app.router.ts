@@ -2,6 +2,7 @@ import { Routes } from "@angular/router";
 import { CadastroComponent } from "./admin/cadastro/cadastro.component";
 import { UserComponent } from "./admin/user/user.component";
 import { ViewCadastrosComponent } from "./admin/view-cadastros/view-cadastros.component";
+import { ViewComponent } from "./view/view.component";
 
 export const ROUTES: Routes = [
     {
@@ -18,5 +19,8 @@ export const ROUTES: Routes = [
     },
     {
         path: 'edicao/:id', component: CadastroComponent
+    },
+    {
+        path: 'view/:id', component: ViewComponent
     }
 ]

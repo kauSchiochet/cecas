@@ -17,7 +17,9 @@ import { UserComponent } from './admin/user/user.component';
 import { RouterModule } from '@angular/router';
 import { ROUTES } from './app.router';
 import { ErrorComponent } from './error/error.component';
+import { ViewComponent } from './view/view.component';
 
+import { NgxQRCodeModule } from '@techiediaries/ngx-qrcode';
 
 @NgModule({
   declarations: [
@@ -26,12 +28,14 @@ import { ErrorComponent } from './error/error.component';
     CadastroComponent,
     ViewCadastrosComponent,
     UserComponent,
-    ErrorComponent
+    ErrorComponent,
+    ViewComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    NgxQRCodeModule,
     QuillModule.forRoot(),
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),

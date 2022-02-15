@@ -9,7 +9,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="row" *ngFor="let cadastro of cadastros">
         <div class="col-6">
             <div class="row">
@@ -18,15 +18,41 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <button type="button" class="btn btn-dark" routerLinkActive="active" routerLink="/view-cadastros">View</button>
+                    <button type="button" class="btn btn-dark" routerLinkActive="active"
+                        [routerLink]="['/view', cadastro.id]">View</button>
                 </div>
                 <div class="col">
-                    <button type="button" class="btn btn-dark" routerLinkActive="active"  [routerLink]="['/edicao', cadastro.id]" >Edit</button>
+                    <button type="button" class="btn btn-dark" routerLinkActive="active"
+                        [routerLink]="['/edicao', cadastro.id]">Edit</button>
                 </div>
                 <div class="col">
                     <button type="button" class="btn btn-dark" (click)="delete(cadastro.id)">Delete</button>
                 </div>
+                <div class="col">
+                    <button type="button" class="btn btn-dark" (click)="gerarQrModal(modalQR, cadastro)">Gerar
+                        QRCode</button>
+                </div>
             </div>
         </div>
     </div>
+
+    <ng-template #modalQR>
+        <div class="modal-header">
+            <h4 class="modal-title pull-left">Modal</h4>
+            <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                <span aria-hidden="true">x</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div style="text-align: center;">
+                <ngx-qrcode [elementType]="elementType" [errorCorrectionLevel]="correctionLevel" [value]="modalQrValue"
+                    cssClass="coolQRCode">
+                </ngx-qrcode>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" (click)="downloadQRCode()">Download</button>
+            <button type="button" class="btn btn-default" (click)="modalRef.hide()">Close</button>
+        </div>
+    </ng-template>
 </body>

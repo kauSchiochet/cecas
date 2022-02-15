@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CadastroService } from 'src/cadastro.service';
-import { Cadastro } from './cadastro.model';
+import { Cadastro } from '../../model/cadastro.model';
 import Quill from 'quill';
 import BlotFormatter from 'quill-blot-formatter';
 import 'quill-emoji/dist/quill-emoji.js'

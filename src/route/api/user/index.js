@@ -46,6 +46,7 @@ router.get('/getdigitalizacoes', authMiddleware, (req, res) => {
     for (let i = 0; i < req.user.digitalizacoes.length; i++) {
         const id = req.user.digitalizacoes[i];
         let digitalizacao = dbDigitalizacoes.read(id);
+        if(!digitalizacao) continue;
         digitalizacao.htmlContent = undefined;
         digitalizacoes.push(digitalizacao)
     }

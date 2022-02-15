@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { map } from "jquery";
 import { Observable, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
-import { User } from "./app/admin/user/user.model";
+import { User } from "./app/model/user.model";
 import { ErrorComponent } from "./app/error/error.component";
 
 @Injectable()
